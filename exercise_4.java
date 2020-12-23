@@ -63,7 +63,7 @@ public class exercise_4 {
             }
             else
             {
-                break;
+                System.exit(0);
             }
         } while (loopCounter <= (matrixSize*3));
     }
@@ -227,7 +227,7 @@ public class exercise_4 {
     // get diagonal right - left
     static void algorithmDiagonalRight()
     {
-        for (int diag = 0, row = 0, column = 2;
+        for (int diag = 0, row = 0, column = (matrixSize-1);
              diag < matrixSize; diag++, row++, column--)
         {
             if (myMatrix[row][column] == 1)
@@ -251,11 +251,6 @@ public class exercise_4 {
             algorithmVertical();
             algorithmDiagonalLeft();
             algorithmDiagonalRight();
-        }
-        if (loopCounter == (matrixSize*3))
-        {
-            gameOver = true;
-            tryAgain();
         }
     }
 
@@ -306,13 +301,14 @@ public class exercise_4 {
             }
         }
         gameOver = true;
+        tryAgain();
     }
 
     static int getRandomNumber ()
     {
         Random myRandom = new Random();
 
-        return myRandom.nextInt(3);
+        return myRandom.nextInt(matrixSize);
     }
 
     // AI move
@@ -336,10 +332,7 @@ public class exercise_4 {
             reInitializeArray();
             getArray();
             algorithmResult();
-        }
-        else
-        {
-            tryAgain();
+            loopCounter++;
         }
     }
 }
